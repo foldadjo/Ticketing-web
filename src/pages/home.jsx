@@ -9,7 +9,7 @@ import Banner2 from "../assets/banner2.png";
 import Banner1 from "../assets/banner1.png";
 
 function Home() {
-  document.title = "Tickitz | Home";
+  document.title = "Ticketing | Home";
   const navigate = useNavigate();
   const nowShowing = `${new Date().getMonth() + 1}`;
   const [monthfil, setMonthfil] = useState("");

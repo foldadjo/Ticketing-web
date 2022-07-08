@@ -67,7 +67,7 @@ function Navbar(props) {
   return (
     <div className="bg-white">
       <div className="navbar navbar-expand-lg navbar-light fixed-top bg-white text-center">
-        <div className="container">
+        <div className="container mt-0">
           <div>
             <a className="navbar-brand d-flex me-5 logoHome" href="/">
               <div className="text-primary fw-bold">Ticketing</div>

@@ -590,6 +590,7 @@ h4 {
   background-color: #d6d8e7;
   border-radius: 10px;
   margin-right: 5%;
+  margin-top: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -603,6 +604,7 @@ h4 {
   background-color: #d6d8e7;
   border-radius: 10px;
   margin-left: 5%;
+  margin-top: 5%;
 }
 .button1:hover {
   border: 2px solid #d6d8e7;
@@ -644,6 +646,69 @@ h3 {
   font-size: 24px;
 }
 
+/* ........... Paayment ................. */
+.payment {
+  flex-wrap: wrap;
+  width: 100%;
+  text-align: center;
+}
+.body__header {
+  padding: 3%;
+  padding-bottom: 2%;
+  background-color: #f5f6f8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.payment__border {
+  margin: 5px;
+  border: 2px solid #ededed;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.payment__border img {
+  max-width: 100%;
+}
+.payment__border:focus {
+  background-color: #5f2eea;
+  border: #5f2eea;
+}
+.payment__other1 {
+  color: #a0a3bd;
+}
+.payment__other2 {
+  color: #5f2eea;
+}
+.payment__other2:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.profile__title {
+  color: #696f79;
+  size: 16px;
+  margin: 15px 0 5px;
+}
+.profile input {
+  width: 100%;
+  height: 64px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #4e4b66;
+  color: #4e4b66;
+}
+.warning {
+  background-color: rgb(244, 183, 64, 0.3);
+  color: black;
+  font-size: 16px;
+  width: 100%;
+  height: 64px;
+  border-radius: 10px;
+  padding: 4%;
+  margin: 30px 0;
+}
+.warning img {
+  padding: 0 25px 0 0;
+}
+
 @media (max-width: 1000px) {
   .home_banner1__size {
     margin-top: 3%;
@@ -683,8 +748,12 @@ h3 {
   .sometimes__button2 {
     margin: 2% 10%;
   }
+  /* ..... booking .....  */
   .container {
     flex-direction: column;
+    /* position: fixed; */
+    margin-top: 5%;
+    /* z-index: -100; */
   }
   .seat__col {
     font-size: 8px;
@@ -709,5 +778,22 @@ h3 {
   .button2 {
     width: 90%;
     padding: 10px;
+  }
+  /* ...... Payment ....  */
+  .box__title {
+    font-size: 75%;
+  }
+  .body__content {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .profile input {
+    width: 100%;
+  }
+  .warning {
+    width: 100%;
+  }
+  .button a {
+    width: 100%;
   }
 }

@@ -14,7 +14,7 @@ import {
 import "./aStyle.css";
 
 function Booking() {
-  document.title = "Tickitz | Choise seat";
+  document.title = "Ticketing | Choise seat";
   const [selectedSeat, setSelectedSeat] = useState([]);
   const [reservedSeat, setReservedSeat] = useState([]);
   const [dataSchedule, setDataSchedule] = useState({
@@ -133,7 +133,11 @@ function Booking() {
 
   const handlePayment = () => {
     localStorage.setItem("dataBooking", JSON.stringify(form));
-    navigate("/payment");
+    if (form.seat.length >= 1) {
+      navigate("/payment");
+    } else {
+      alert("choise seat first");
+    }
   };
 
   return (

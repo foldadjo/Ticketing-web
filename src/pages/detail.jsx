@@ -7,7 +7,7 @@ import Footer from "../components/footer";
 import "./aStyle.css";
 
 export default function Detail() {
-  document.title = "Tickitz | Detail";
+  document.title = "Ticketing | Detail";
   const navigate = useNavigate();
   const params = useParams();
   const [data, setData] = useState([]);
