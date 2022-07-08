@@ -116,7 +116,7 @@ function Home() {
               <img
                 src={
                   item.image
-                    ? `https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${item.image}`
+                    ? `${process.env.REACT_APP_LINK_CLOUDINARY}${item.image}`
                     : "https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg"
                 }
                 className="movie__image--size"
@@ -172,7 +172,7 @@ function Home() {
               alt="image_movie"
               src={
                 item.image
-                  ? `https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${item.image}`
+                  ? `${process.env.REACT_APP_LINK_CLOUDINARY}${item.image}`
                   : "https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg"
               }
               className="movie__image--size"

@@ -95,8 +95,8 @@ function Navbar(props) {
                   className="profileImage"
                   src={
                     dataUser.image === ("" || undefined || "null")
-                      ? `https://res.cloudinary.com/fazztrack/image/upload/v1655102148/tiketjauhar/user/images_qygn7n.jpg`
-                      : `https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${dataUser.image}`
+                      ? `${process.env.REACT_APP_LINK_CLOUDINARY}tiketjauhar/user/images_qygn7n.jpg`
+                      : `${process.env.REACT_APP_LINK_CLOUDINARY}${dataUser.image}`
                   }
                   alt="imageProfile"
                 />

@@ -86,7 +86,7 @@ export default function Detail() {
           <img
             src={
               data.map((item) => item.image)[0]
-                ? `https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${
+                ? `${process.env.REACT_APP_LINK_CLOUDINARY}${
                     data.map((item) => item.image)[0]
                   }`
                 : "https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg"
