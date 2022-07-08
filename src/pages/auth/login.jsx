@@ -37,6 +37,7 @@ function Login() {
           name: resultName.data.data[0].name,
           role: resultName.data.data[0].role,
           image: resultName.data.data[0].image,
+          noTelp: resultName.data.data[0].noTelp,
         },
       ];
       setIsError(false);

@@ -709,6 +709,104 @@ h3 {
   padding: 0 25px 0 0;
 }
 
+/* ............ Profile ............  */
+.profile_card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px 0 30px 0;
+  box-shadow: 2px 5px 5px 5px #ededed;
+  height: 390px;
+}
+.profile_Image {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  box-shadow: 2px 5px 5px 5px #ededed;
+}
+.deleteImage {
+  position: relative;
+  left: 80%;
+  top: -5%;
+  font-weight: 900;
+  background-color: rgba(231, 71, 71, 0.6);
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.profile_name {
+  margin: 12px 0 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.profile_card2 {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px 0 0 15px;
+  margin: 20px 0 30px 0;
+  box-shadow: 2px 5px 5px 5px #ededed;
+  height: auto;
+  text-align: left;
+}
+
+/* .......... Ticket .........  */
+.ticketBg {
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  padding: 5%;
+  height: 550px;
+}
+.cardTicket {
+  width: 800px;
+  height: 400px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 3%;
+  position: relative;
+}
+.ticketCard1 {
+  width: 600px;
+  height: 202px;
+  background-color: #5f2eea;
+  border-radius: 20px;
+  text-align: left;
+}
+.ticketGap1 {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 25px;
+  position: absolute;
+  top: 82px;
+  left: 58%;
+}
+.TicketLogo {
+  font-size: 25px;
+  font-weight: 800;
+  color: white;
+  text-align: left;
+  padding-top: 5px;
+  padding-left: 30px;
+}
+.ticket--context {
+  padding-bottom: 10px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 0 2px 3px 2px;
+}
+.ticket--title {
+  opacity: 0.8;
+  color: black;
+  padding: 1px 0 0 40px;
+}
+.ticket--value {
+  color: black;
+  font-weight: 700;
+  padding: 0 0 0 40px;
+}
+
 @media (max-width: 1000px) {
   .home_banner1__size {
     margin-top: 3%;

@@ -9,6 +9,9 @@ import Detail from "./pages/detail";
 import Booking from "./pages/booking";
 import Payment from "./pages/payment";
 import ViewAll from "./pages/viewall";
+import Profile from "./pages/profile";
+import History from "./pages/history";
+import Ticket from "./pages/ticket";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/ticket/:bookingId" element={<Ticket />} />
       </Routes>
     </BrowserRouter>
   );
