@@ -2,19 +2,19 @@ const initialState = {
   data: [],
   isLoading: false,
   isError: false,
-  msg: '',
+  msg: "",
 };
 
 const booking = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_SEAT_BOOKING_PENDING':
+    case "GET_SEAT_BOOKING_PENDING":
       return {
         ...state,
         isError: false,
         isLoading: true,
       };
 
-    case 'GET_SEAT_BOOKING_FULFILLED':
+    case "GET_SEAT_BOOKING_FULFILLED":
       return {
         ...state,
         isLoading: false,
@@ -23,7 +23,7 @@ const booking = (state = initialState, action) => {
         msg: action.payload.data.msg,
       };
 
-    case 'GET_SEAT_BOOKING_REJECTED':
+    case "GET_SEAT_BOOKING_REJECTED":
       return {
         ...state,
         isLoading: false,
@@ -32,14 +32,14 @@ const booking = (state = initialState, action) => {
         msg: action.payload.response.data,
       };
 
-    case 'GET_BOOKING_BY_ID_PENDING':
+    case "GET_BOOKING_BY_ID_PENDING":
       return {
         ...state,
         isError: false,
         isLoading: true,
       };
 
-    case 'GET_BOOKING_BY_ID_FULFILLED':
+    case "GET_BOOKING_BY_ID_FULFILLED":
       return {
         ...state,
         isLoading: false,
@@ -48,7 +48,7 @@ const booking = (state = initialState, action) => {
         msg: action.payload.data.msg,
       };
 
-    case 'GET_BOOKING_BY_ID_REJECTED':
+    case "GET_BOOKING_BY_ID_REJECTED":
       return {
         ...state,
         isLoading: false,
@@ -57,14 +57,14 @@ const booking = (state = initialState, action) => {
         msg: action.payload.response.data,
       };
 
-    case 'GET_BOOKING_BY_USER_ID_PENDING':
+    case "GET_BOOKING_BY_USER_ID_PENDING":
       return {
         ...state,
         isError: false,
         isLoading: true,
       };
 
-    case 'GET_BOOKING_BY_USER_ID_FULFILLED':
+    case "GET_BOOKING_BY_USER_ID_FULFILLED":
       return {
         ...state,
         isLoading: false,
@@ -73,7 +73,7 @@ const booking = (state = initialState, action) => {
         msg: action.payload.data.msg,
       };
 
-    case 'GET_BOOKING_BY_USER_ID_REJECTED':
+    case "GET_BOOKING_BY_USER_ID_REJECTED":
       return {
         ...state,
         isLoading: false,
@@ -82,23 +82,48 @@ const booking = (state = initialState, action) => {
         msg: action.payload.response.data,
       };
 
-    case 'CREATE_BOOKING_PENDING':
+    case "GET_DASHBOARD_PENDING":
       return {
         ...state,
         isError: false,
         isLoading: true,
       };
 
-    case 'CREATE_BOOKING_FULFILLED':
+    case "GET_DASHBOARD_FULFILLED":
       return {
         ...state,
         isLoading: false,
         isError: false,
-        data: {...action.payload.data.data},
+        data: action.payload.data.data,
         msg: action.payload.data.msg,
       };
 
-    case 'CREATE_BOOKING_REJECTED':
+    case "GET_DASHBOARD_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        data: [],
+        msg: action.payload.response.data,
+      };
+
+    case "CREATE_BOOKING_PENDING":
+      return {
+        ...state,
+        isError: false,
+        isLoading: true,
+      };
+
+    case "CREATE_BOOKING_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: { ...action.payload.data.data },
+        msg: action.payload.data.msg,
+      };
+
+    case "CREATE_BOOKING_REJECTED":
       return {
         ...state,
         isLoading: false,
@@ -106,14 +131,14 @@ const booking = (state = initialState, action) => {
         msg: action.payload.response.data.msg,
       };
 
-    case 'UPDATE_STATUS_BOOKING_PENDING':
+    case "UPDATE_STATUS_BOOKING_PENDING":
       return {
         ...state,
         isError: false,
         isLoading: true,
       };
 
-    case 'UPDATE_STATUS_BOOKING_FULFILLED':
+    case "UPDATE_STATUS_BOOKING_FULFILLED":
       return {
         ...state,
         isLoading: false,
@@ -121,7 +146,7 @@ const booking = (state = initialState, action) => {
         msg: action.payload.data.msg,
       };
 
-    case 'UPDATE_STATUS_BOOKING_REJECTED':
+    case "UPDATE_STATUS_BOOKING_REJECTED":
       return {
         ...state,
         isLoading: false,

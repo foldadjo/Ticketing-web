@@ -1,15 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
+import { getBookingByUserId } from "../store/action/booking";
+import Spinner from "react-bootstrap/Spinner";
 import "./aStyle.css";
 
 function History() {
   document.title = "Ticketing | Profile";
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const dataUserLocal = localStorage.getItem("dataUser");
   const dataUser = JSON.parse(dataUserLocal);
-  const premiere = "hiflix";
+
+  const [page, setPage] = useState(1);
+  const limit = 5;
+  const [totalPage, setTotalPage] = useState(2);
+  const [dataHistory, setDataHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    handleHistory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
+  const handleHistory = async () => {
+    try {
+      setLoading(true);
+      if (page <= totalPage) {
+        const result = await dispatch(
+          getBookingByUserId(dataUser.id, page, limit)
+        );
+        if (result.value.data.data === null) {
+          setDataHistory([]);
+        } else {
+          setDataHistory(result.value.data.data);
+          setTotalPage(result.value.data.pagination.totalPage);
+        }
+      } else {
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.response);
+    }
+  };
 
   const handleTicket = (bookingId) => {
     navigate(`/ticket/${bookingId}`);
@@ -68,74 +103,83 @@ function History() {
               Order History
             </div>
           </div>
-          <div className="profile_card2 px-4">
-            <div className="row">
-              <div className="col pt-2">
-                <div>Tuesday, 07 July 2020 - 04:30pm</div>
-                <div className="m-3 mb-2 text-align-left fw-bold">
-                  Spiderman Homecoming
+          {dataHistory.map((item) => (
+            <div className="profile_card2 px-4" key={item.id}>
+              <div className="row">
+                <div className="col pt-2">
+                  <div>
+                    {item.dateBooking.split("T")[0]} -{" "}
+                    {`${item.timeBooking.split(":")[0]}:00`}
+                  </div>
+                  <div className="m-3 mb-2 text-align-left fw-bold">
+                    {item.name}
+                  </div>
+                </div>
+                <div className="col d-flex justify-content-end">
+                  <img
+                    src={
+                      item.premiere === "Ebu.Id"
+                        ? require("../assets/logo ebv.png")
+                        : item.premiere === "hiflix"
+                        ? require("../assets/logo hiflix.png")
+                        : item.premiere === "cinemaOne"
+                        ? require("../assets/logo cineone.png")
+                        : require("../assets/logo.png")
+                    }
+                    alt="logo"
+                    className="px-4 pt-2"
+                    style={{ widht: 100, height: 50 }}
+                  />
                 </div>
               </div>
-              <div className="col d-flex justify-content-end">
-                <img
-                  src={
-                    premiere === "Ebu.Id"
-                      ? require("../assets/logo ebv.png")
-                      : premiere === "hiflix"
-                      ? require("../assets/logo hiflix.png")
-                      : premiere === "cinemaOne"
-                      ? require("../assets/logo cineone.png")
-                      : require("../assets/logo.png")
-                  }
-                  alt="logo"
-                  className="px-4 pt-2"
-                  style={{ widht: 100, height: 50 }}
-                />
+              <hr />
+              <div className="d-flex justify-content-start">
+                <button
+                  className={`btn ${
+                    item.statusUsed === "notActive" ? "btn-success" : "btn-dark"
+                  } px-5 py-2 mb-4`}
+                  onClick={() => handleTicket(item.id)}
+                >
+                  Ticket in active
+                </button>
               </div>
             </div>
-            <hr />
-            <div className="d-flex justify-content-start">
-              <button
-                className="btn btn-success px-5 py-2 mb-4"
-                onClick={() => handleTicket()}
-              >
-                Ticket in active
-              </button>
-            </div>
-          </div>
-          <div className="profile_card2 px-4">
+          ))}
+          <div className="d-flex justify-content-center align-item-center mb-5">
             <div className="row">
-              <div className="col pt-2">
-                <div>Tuesday, 07 July 2020 - 04:30pm</div>
-                <div className="m-3 mb-2 text-align-left fw-bold">
-                  One Piece film Red
-                </div>
+              {page === 1 ? (
+                <button className="col btn btn-primary" disabled>
+                  back
+                </button>
+              ) : (
+                <button
+                  className="col btn btn-primary"
+                  onClick={() => setPage(page - 1)}
+                >
+                  back
+                </button>
+              )}
+              <div className="col btn btn-primary me-5 ms-5">
+                {loading === true ? (
+                  <Spinner animation="border" role="status" size={"sm"}>
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                ) : (
+                  page
+                )}
               </div>
-              <div className="col d-flex justify-content-end">
-                <img
-                  src={
-                    premiere === "Ebu.Id"
-                      ? require("../assets/logo ebv.png")
-                      : premiere === "hiflix"
-                      ? require("../assets/logo hiflix.png")
-                      : premiere === "cinemaOne"
-                      ? require("../assets/logo cineone.png")
-                      : require("../assets/logo.png")
-                  }
-                  alt="logo"
-                  className="px-4 pt-2"
-                  style={{ widht: 100, height: 50 }}
-                />
-              </div>
-            </div>
-            <hr />
-            <div className="d-flex justify-content-start">
-              <button
-                className="btn btn-dark px-5 py-2 mb-4"
-                onClick={() => handleTicket()}
-              >
-                Ticket used
-              </button>
+              {page >= totalPage ? (
+                <button className="col btn btn-primary" disabled>
+                  next
+                </button>
+              ) : (
+                <button
+                  className="col btn btn-primary"
+                  onClick={page >= totalPage ? null : () => setPage(page + 1)}
+                >
+                  next
+                </button>
+              )}
             </div>
           </div>
         </div>

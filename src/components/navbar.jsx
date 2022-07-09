@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./component.css";
 import { Dropdown } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { getUser } from "../store/action/user";
 
 function Navbar(props) {
   const navigate = useNavigate();
@@ -10,9 +12,21 @@ function Navbar(props) {
   const [tap, setTap] = useState(false);
   const [search, setSearch] = useState("");
   let dataUser = localStorage.getItem("dataUser");
+  const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
 
-  console.log(search);
+  console.log(props.imageChange);
 
+  useEffect(() => {
+    handleUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [image, props.imageChange]);
+  const handleUser = async () => {
+    try {
+      const result = await dispatch(getUser(dataUser.id));
+      setImage(result.value.data.data[0].image);
+    } catch (error) {}
+  };
   const handleSearch = (event) => {
     const { value } = event.target;
     setSearch(value);
@@ -96,7 +110,7 @@ function Navbar(props) {
                   src={
                     dataUser.image === ("" || undefined || "null")
                       ? `${process.env.REACT_APP_LINK_CLOUDINARY}tiketjauhar/user/images_qygn7n.jpg`
-                      : `${process.env.REACT_APP_LINK_CLOUDINARY}${dataUser.image}`
+                      : `${process.env.REACT_APP_LINK_CLOUDINARY}${image}`
                   }
                   alt="imageProfile"
                 />

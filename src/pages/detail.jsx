@@ -17,7 +17,11 @@ export default function Detail() {
       (new Date().getMonth() + 1).length === 2
         ? new Date().getMonth() + 1
         : "0" + (new Date().getMonth() + 1)
-    }-${new Date().getDate()}`
+    }-${
+      new Date().getDate() < 10
+        ? `0${new Date().getDate()}`
+        : new Date().getDate()
+    }`
   );
   const [form, setForm] = useState({
     scheduleId: "",
@@ -26,8 +30,7 @@ export default function Detail() {
   });
 
   const handleChangeDate = (event) => {
-    const { value } = event.target;
-    setDate(value);
+    setDate(event.target.value);
   };
 
   const timeDay = ["09:00", "11:00", "13:00", "15:00"];
@@ -138,7 +141,8 @@ export default function Detail() {
           <input
             type="date"
             placeholder="Set a Date"
-            onClick={handleChangeDate}
+            value={date}
+            onChange={handleChangeDate}
             className="sometimes__button1"
             style={{ flex: "1" }}
           />

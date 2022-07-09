@@ -14,7 +14,7 @@ import "./admin.css";
 import "../aStyle.css";
 
 export default function Manageschedule() {
-  document.title = "Manage Schedule Page|| Tickitz";
+  document.title = "Manage Schedule Page|| Ticketing";
   const timeDay = ["09:00", "11:00", "13:00", "15:00"];
   const timeNight = ["17:00", "19:00", "20:00", "21:00"];
 

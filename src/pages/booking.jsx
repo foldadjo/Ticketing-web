@@ -22,7 +22,8 @@ function Booking() {
     dateBooking: "",
     timeBooking: "",
   });
-  console.log(dataSchedule.dateBooking);
+
+  console.log(dataSchedule);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [premiere, setPremiere] = useState("hiflix");
@@ -49,7 +50,7 @@ function Booking() {
   useEffect(() => {
     getReservedSeat();
     setSelectedSeat([]);
-  }, []);
+  }, [dataSchedule]);
   const getReservedSeat = async () => {
     try {
       setLoading(true);

@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import QRCode from "react-qr-code";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getBookingById } from "../store/action/booking";
 import "./aStyle.css";
 
 function Ticket() {
-  const bookingId = "abcdefghijklmn";
+  const params = useParams();
+  const dispatch = useDispatch();
+  const bookingId = params.bookingId;
+  const [data, setData] = useState({
+    name: "",
+    category: "",
+    totalTicket: "",
+    dateBooking: "",
+    timeBooking: "",
+    seat: [],
+    price: "",
+  });
+
+  useEffect(() => {
+    getDataTicket();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const getDataTicket = async () => {
+    try {
+      const result = await dispatch(getBookingById(bookingId));
+      setData(result.value.data.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <div className="text-center container ">
       <Navbar />
@@ -23,35 +51,53 @@ function Ticket() {
                   <div className="d-flex">
                     <div>
                       <div className="ticket--title">Movie</div>
-                      <div className="ticket--value">Spider-Mn: Homecoming</div>
+                      <div className="ticket--value">
+                        {data.name.length > 15
+                          ? data.name.substring(0, 7) + "..."
+                          : data.name}
+                      </div>
                     </div>
                   </div>
                   <div className="d-flex">
                     <div>
                       <div className="ticket--title">Date</div>
-                      <div className="ticket--value">07 July</div>
+                      <div className="ticket--value">
+                        {`${data.dateBooking.split("T")[0].split("-")[2]}/${
+                          data.dateBooking.split("T")[0].split("-")[1]
+                        }`}
+                      </div>
                     </div>
                     <div>
                       <div className="ticket--title">Time</div>
-                      <div className="ticket--value">19:00</div>
+                      <div className="ticket--value">
+                        {data.timeBooking.split(":")[0]}:00
+                      </div>
                     </div>
                     <div>
                       <div className="ticket--title">Category</div>
-                      <div className="ticket--value">Action</div>
+                      <div className="ticket--value">
+                        {data.category.length > 10
+                          ? data.category.substring(0, 7) + "..."
+                          : data.category}
+                      </div>
                     </div>
                   </div>
                   <div className="d-flex">
                     <div>
                       <div className="ticket--title">Count</div>
-                      <div className="ticket--value">3 pieces</div>
+                      <div className="ticket--value">
+                        {data.totalTicket} pieces
+                      </div>
                     </div>
                     <div>
                       <div className="ticket--title">Seat</div>
-                      <div className="ticket--value">C4, C5, C6</div>
+                      <div className="ticket--value">
+                        {data.seat.join(", ")}
+                      </div>
                     </div>
                     <div>
                       <div className="ticket--title">Price</div>
-                      <div className="ticket--value">$150.000</div>
+                      <div className="ticket--value">$.{data.price}</div>
                     </div>
                   </div>
                 </div>

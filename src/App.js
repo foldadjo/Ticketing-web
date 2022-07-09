@@ -14,6 +14,7 @@ import History from "./pages/history";
 import Ticket from "./pages/ticket";
 import Managemovie from "./pages/admin/manageMovie";
 import Manageschedule from "./pages/admin/manageSchedule";
+import Dashboard from "./pages/admin/dashboard";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/ticket/:bookingId" element={<Ticket />} />
         <Route path="/managemovie" element={<Managemovie />} />
         <Route path="/manageschedule" element={<Manageschedule />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
