@@ -232,7 +232,7 @@ export default function Manageschedule() {
                 image !== null ? (
                   <img
                     alt="imageManage"
-                    src={`https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${image}`}
+                    src={`${process.env.REACT_APP_LINK_CLOUDINARY}${image}`}
                   />
                 ) : (
                   <img
@@ -247,7 +247,7 @@ export default function Manageschedule() {
                 />
               ) : (
                 <img
-                  src={`https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${image}`}
+                  src={`${process.env.REACT_APP_LINK_CLOUDINARY}${image}`}
                   alt="image_movie_preview"
                 />
               )}

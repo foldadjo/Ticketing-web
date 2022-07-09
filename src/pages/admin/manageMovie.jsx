@@ -210,7 +210,7 @@ export default function Managemovie() {
                   ) : (
                     <img
                       alt="imageManage"
-                      src={`https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${form.image}`}
+                      src={`${process.env.REACT_APP_LINK_CLOUDINARY}${form.image}`}
                     />
                   )
                 ) : (
