@@ -5,22 +5,19 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import Spinner from "react-bootstrap/Spinner";
-import Select from "react-select";
 import "./aStyle.css";
-
-const options = [
-  { value: "id", label: "Id" },
-  { value: "name asc", label: "A to Z" },
-  { value: "name desc", label: "Z to A" },
-];
 
 function ViewAll() {
   document.title = "Ticketing | View All";
   const navigate = useNavigate();
   //filering
   const [search, setSearch] = useState("");
-  const [selectedOption, setSelectedOption] = useState({ value: "" });
+  const [selectedOption, setSelectedOption] = useState("");
   const [monthfil, setMonthfil] = useState("");
+
+  const handleSort = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
   //rendering
   const [loading, setLoading] = useState(false);
@@ -42,7 +39,7 @@ function ViewAll() {
     try {
       setLoading(true);
       const result = await dispatch(
-        getAllMovie(page, 8, monthfil, search, selectedOption.value)
+        getAllMovie(page, 8, monthfil, search, selectedOption)
       );
       if (result.value.data.data === null) {
         setData([]);
@@ -96,13 +93,15 @@ function ViewAll() {
           List Movie
         </div>
         <div className="article__caption2 d-flex justify-content-end">
-          <Select
-            defaultValue={selectedOption}
-            onChange={setSelectedOption}
-            options={options}
-            placeholder="sort"
-            className="me-3 w-25 text-dark"
-          />
+          <select
+            className="sort mx-2 h-100 w-25 rounded border border-secondary text-secondary p-1"
+            name="Sort"
+            onClick={(value) => handleSort(value)}
+          >
+            <option value="">Sort</option>
+            <option value="name ASC">A to Z</option>
+            <option value="name DESC">Z to A</option>
+          </select>
           <input
             type={"text"}
             placeholder="search movie"

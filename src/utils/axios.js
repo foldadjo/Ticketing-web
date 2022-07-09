@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosApiIntances = axios.create({
-  baseURL: process.env.REACT_APP_LINK_BACKEND,
+  baseURL: `${process.env.REACT_APP_LINK_BACKEND}/`,
 });
 
 // Add a request interceptor

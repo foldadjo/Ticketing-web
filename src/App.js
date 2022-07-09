@@ -12,6 +12,8 @@ import ViewAll from "./pages/viewall";
 import Profile from "./pages/profile";
 import History from "./pages/history";
 import Ticket from "./pages/ticket";
+import Managemovie from "./pages/admin/manageMovie";
+import Manageschedule from "./pages/admin/manageSchedule";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/history" element={<History />} />
         <Route path="/ticket/:bookingId" element={<Ticket />} />
+        <Route path="/managemovie" element={<Managemovie />} />
+        <Route path="/manageschedule" element={<Manageschedule />} />
       </Routes>
     </BrowserRouter>
   );
