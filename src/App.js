@@ -16,25 +16,39 @@ import Managemovie from "./pages/admin/manageMovie";
 import Manageschedule from "./pages/admin/manageSchedule";
 import Dashboard from "./pages/admin/dashboard";
 
+import PrivateRoute from "./helpers/route/privateRoute";
+import PublicRoute from "./helpers/route/publicRoute";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/viewall" element={<ViewAll />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgotPassword" element={<ForgotPassword />} />
-        <Route path="/auth/reset-password/:otp" element={<ResetPassword />} />
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/ticket/:bookingId" element={<Ticket />} />
-        <Route path="/managemovie" element={<Managemovie />} />
-        <Route path="/manageschedule" element={<Manageschedule />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<PublicRoute restricted={false} />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/viewall" element={<ViewAll />} />
+          <Route path="/detail/:id" element={<Detail />} />
+        </Route>
+
+        <Route element={<PublicRoute restricted={true} />}>
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
+          <Route path="/auth/reset-password/:otp" element={<ResetPassword />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+
+        <Route element={<PrivateRoute isAdmin={false} />}>
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/ticket/:bookingId" element={<Ticket />} />
+        </Route>
+
+        <Route element={<PrivateRoute isAdmin={true} />}>
+          <Route path="/managemovie" element={<Managemovie />} />
+          <Route path="/manageschedule" element={<Manageschedule />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
