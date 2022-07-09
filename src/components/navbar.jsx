@@ -15,8 +15,6 @@ function Navbar(props) {
   const [image, setImage] = useState(null);
   const dispatch = useDispatch();
 
-  console.log(props.imageChange);
-
   useEffect(() => {
     handleUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
