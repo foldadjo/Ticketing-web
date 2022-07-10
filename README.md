@@ -1,7 +1,7 @@
 <h1 align='center'>Ticketing Web</h1>
 
 <p align="center">
- <a href="https://ibb.co/P5W95yB"><img src="https://i.ibb.co/9q4Vq0R/Splash-Screen-2022-06-11-00-56-56-98-73.jpg" alt="2022-06-11-00-56-56-98-REC" border="0" width="800px"></a>
+ <a href="https://ticketing-web.vercel.app/"><img src="https://i.ibb.co/9q4Vq0R/Splash-Screen-2022-06-11-00-56-56-98-73.jpg" alt="2022-06-11-00-56-56-98-REC" border="0" width="800px"></a>
 </p>
 
 ## About The Project
@@ -56,7 +56,7 @@ REACT_APP_LINK_CLOUDINARY: "https://res.cloudinary.com/fazztrack/image/upload/v1
 ## License
 
 © [Ticketing](https://github.com/foldadjo/Ticketing-web.git)
-© [Publication]
+© [Publication](https://ticketing-web.vercel.app/)
 
 ## 🔎 Preview Pages
 
